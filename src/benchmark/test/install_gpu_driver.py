@@ -28,7 +28,7 @@ def install_gpu_drivers(api_client):
   link = "https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v1.11/nvidia-device-plugin.yml"  # pylint: disable=line-too-long
   logging.info("Using daemonset file: %s", link)
   f = urllib.urlopen(link)
-  daemonset_spec = yaml.load(f)
+  daemonset_spec = yaml.safe_load(f)
   ext_client = k8s_client.ExtensionsV1beta1Api(api_client)
   try:
     namespace = daemonset_spec["metadata"]["namespace"]

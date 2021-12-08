@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
   # Customization here to change cluster spec
   with open(cluster_manifest_path, "r") as stream:
-    cluster_spec = yaml.load(stream)
+    cluster_spec = yaml.safe_load(stream)
 
   cluster_spec['metadata']['name'] = args.cluster_name
   cluster_spec['metadata']['region'] = args.region

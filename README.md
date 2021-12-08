@@ -2,6 +2,9 @@
 # EKS Deep Learning Benchmark Utility
 The EKS Deep Learning Benchmark Utility is an automated tool for machine learning benchmarking on Kubernetes clusters.
 
+## Vulnerabilites found and patched
+Use of unsafe yaml load that allows instantiation of arbitrary objects was replaced with yaml.safe_load().
+
 ## Features
 * Automated end-to-end benchmarking workflow from cluster creation to cluster tear down
 * Allows highly configurable Kubernetes cluster configurations

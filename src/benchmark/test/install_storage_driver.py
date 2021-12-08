@@ -23,7 +23,7 @@ def install_fsx_driver(fs_id, fsx_dns_name, csi_manifest_folder):
 
   secret_file_path = csi_manifest_folder+"/secret.yaml"
   with open(secret_file_path, "r") as stream:
-    secret_file = yaml.load(stream)
+    secret_file = yaml.safe_load(stream)
 
   with open(secret_file_path, "w") as stream:
     secret_file['stringData']['key_id'] = str(os.environ['AWS_ACCESS_KEY_ID'])
@@ -35,7 +35,7 @@ def install_fsx_driver(fs_id, fsx_dns_name, csi_manifest_folder):
 
   pv_path = csi_manifest_folder + "/pv.yaml"
   with open(pv_path, "r") as stream:
-    pv_file = yaml.load(stream)
+    pv_file = yaml.safe_load(stream)
 
   with open(pv_path, "w") as stream:
     pv_file['spec']['csi']['volumeHandle'] = fs_id
@@ -55,7 +55,7 @@ def install_efs_driver(fs_id, csi_manifest_folder):
 
   pv_path = csi_manifest_folder + "/pv.yaml"
   with open(pv_path, "r") as stream:
-    pv_file = yaml.load(stream)
+    pv_file = yaml.safe_load(stream)
 
   with open(pv_path, "w") as stream:
     pv_file['spec']['csi']['volumeHandle'] = fs_id
@@ -68,7 +68,7 @@ def install_efs_driver(fs_id, csi_manifest_folder):
 
 def get_config_entry(file_path, key):
   with open(file_path, "r") as stream:
-    cluster_spec = yaml.load(stream)
+    cluster_spec = yaml.safe_load(stream)
   return cluster_spec[key]
 
 

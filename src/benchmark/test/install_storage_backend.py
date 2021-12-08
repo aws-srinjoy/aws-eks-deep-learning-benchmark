@@ -21,7 +21,7 @@ def parse_args():
 
 def get_cluster_network_info(storage_config_path):
   with open(storage_config_path, "r") as stream:
-    storage_spec = yaml.load(stream)
+    storage_spec = yaml.safe_load(stream)
 
   return storage_spec['vpc'], storage_spec['subnet'], storage_spec['security-group']
 
@@ -116,7 +116,7 @@ def add_config_entry(key, value):
   cluster_manifest_path = os.path.join(benchmark_dir, "storage-config.yaml")
 
   with open(cluster_manifest_path, "r") as stream:
-    cluster_spec = yaml.load(stream)
+    cluster_spec = yaml.safe_load(stream)
 
   with open(cluster_manifest_path, "w") as stream:
     cluster_spec[key] = value
